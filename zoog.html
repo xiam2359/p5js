@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+               createCanvas(800,600)
+        }
+
+        function draw() {
+            fill(245,240,7)
+            stroke(0,0,0,50)
+            strokeWeight(3)
+            //the color of the whole robot//
+            
+            
+            rect(260,100,180,80)/*the head of the robot*/
+            rect(300,200,100,130)/*the body of the robot*/
+            rect(240,120,20,40)/*the left ear of the robot*/
+            rect(440,120,20,40)/*the right ear of the robot*/
+            rect(260,200,20,60)/*the left arm of the robot*/
+            rect(420,200,20,60)/*the right arm of the robot*/
+            ellipse(270,275,20,20)/*the left hand of the robot*/
+            ellipse(430,275,20,20)/*the right hand of the robot*/
+            rect(340,330,10,20)/*the left foot/leg of the robot*/ 
+            rect(360,330,10,20)/*the right foot/leg of the robot*/
+            
+            
+            fill(0,0,0)/*the color of the eye(black)*/
+            ellipse(300,130,40,20)/*the left eye of the robot*/
+            ellipse(390,130,40,20)/*the right eye of the robot*/
+            fill(255)/*the color of eyeball(white)*/
+            ellipse(300,130,20,10)/*the left eyeball of the robot*/
+            ellipse(390,130,20,10)/*the right eyeball of the robot*/
+            
+            line(320,160,375,160)/*the lip/mouth of the robot*/
+            line(260,200,300,200)/*the line connecting the left arm to the body*/
+            line(380,200,420,200) /*the line connecting the right arm to the body*/
+            
+            textSize(25)
+            text('Hello!',325,230)
+            textSize(22)
+            text('Humans.',305,263)
+            textFont('GEORGIA')
+            //the text//
+            
+            line(520,120,470,200)
+            ellipse(600,100,280,100)
+            text('Welcome to HSTAT!',500,100)
+            //the bubble with text(said by the robot)//
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/xiam2359/p5js/blob/gh-pages/zoog.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
