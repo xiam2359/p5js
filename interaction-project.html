@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+            createCanvas(800,600);
+           r = random(255);
+           g = random(255);
+           b = random(255);
+           scale=1
+           
+        }
+        
+        
+        function mouseDragged() {
+         stroke(255)//giving the points/stars a color of white
+         point(mouseX,mouseY)//the stars
+        
+      }
+        function keyPressed() {
+         background(0)//color of the universe
+        }
+        
+        function mouseMoved() { 
+            
+         strokeWeight(2)
+         stroke(mouseX-100,0,mouseY+100)//giving the ellipses color from blueish to pinkish
+         fill(r,g,b,0)//provinding the ellipses an open circle
+         ellipse(mouseX,mouseY,50*scale,50*scale)//the galaxy
+         scale = scale + 0.006;//giving the factors that increase sizes of ellipse
+         
+         }
+         
+         function draw() {
+            stroke('blue')
+            fill(47,115,224)
+            ellipse(100,200,50,50)//the 'earth'
+            
+            stroke('yellow')
+            fill(236, 255, 30)
+            ellipse(80,400,100,100)//the sun of the universe
+            
+            stroke('purple')
+            fill(239, 138, 50)
+            ellipse(400,400,40,40)//another 'planet,the mars'
+            
+        }
+        
+         
+         
+        
+
+      
+       
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/xiam2359/p5js/blob/gh-pages/interaction-project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
