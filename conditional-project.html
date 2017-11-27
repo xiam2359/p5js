@@ -57,7 +57,7 @@
            } 
            }
            strokeWeight(2);
-           fill(200,255,200);
+           fill(200);
            rect(x - 200, y + 350, 500, 100);
            line(x - 200, y + 350, x + 300, y + 450);
            line(x - 200, y + 450, x + 300, y + 350);
@@ -65,10 +65,10 @@
             if(mouseX > x - 200 && mouseX < x + 300 && mouseY > y + 350 && mouseY < y + 450) {
                 background(200);
                 fill(0);
-                textSize(100);
-                text("You lost!", 70, 300);
-                textSize(32);
-                text("Click on the grey square", 100, 350); 
+                textSize(60);
+                text("Game Over!", 70, 300);
+                textSize(25);
+                text("Click on the grey square to restart", 60, 350); 
             }
            }
       }
