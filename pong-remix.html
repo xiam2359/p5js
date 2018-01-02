@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+        var a = 0;//initailing the score starting from 0
+        var ballX;
+        var ballY;
+        var ballSpeedX = 0;//initialing the ballspeed at the beginning horizontally
+        var ballSpeedY = 0;//initialing the ballspeed at the beginning vertically 
+        var paddleHeight = 30;//setting the height of paddle to 30
+        var paddleWidth = 200;//setting the width of paddle to 200
+
+        function setup() {
+            createCanvas(600,400);//size of canvas
+            noCursor();//setting the mouse to disappear when inside of canvas
+            ballX = random(width);
+            ballY = random(height/2);
+           
+            
+        }
+
+        function draw() {
+            background(165, 16, 16);//color of background red
+            moveBall();
+            checkCollide();
+            drawPaddle();
+            drawBall();
+            //directions on the screen
+            textSize(30)
+            text("score:",50,50)
+            text(a,150,50)
+            textSize(15)
+            text("Press 'p' to pause the game",50,80)
+            text("Press the mouse to start the game",50, 100)
+            
+            
+        }
+
+        function moveBall() {
+            ballX = ballX + ballSpeedX;//setting the speed of ball moving horizontally
+            ballY = ballY + ballSpeedY;//setting the speed of ball moving vertically
+
+            console.log("ballSpeedX: " + ballSpeedX + 
+                        ", ballSpeedY: " + ballSpeedY);
+        }//ball moving
+
+        function checkCollide() {
+            if (ballX < 0 || ballX > width) {
+               ballSpeedX = ballSpeedX * -1;
+            } //preventing the ball from escaping away the canvas to the right/left
+            
+            if (ballY < 0) {
+                ballSpeedY = ballSpeedY * -1;
+            }//preventing the ball from escaping away the canvas top/bottom
+            
+            
+            if (ballY > height - paddleHeight) {   
+                if (ballX > mouseX && ballX < mouseX + 200) { 
+                    ballSpeedY = ballSpeedY * -1;//the ball bouncing back up from the paddle
+                    ballSpeedY = ballSpeedY * 1.2//increasing the speed everytime the ball bounce on the paddle vertically
+                    ballSpeedX = ballSpeedX * 1.2//increasing the speed everytime the ball bounce on the paddle horizontally
+                    paddleWidth = paddleWidth * .9//increasing the spped of the movement of the ball moving every time it hits the paddle
+                     a=a+1//score increasing everytime ball bounce on the paddle
+                   
+                }//the directions of the ball going
+               
+           
+                else {
+                    textSize(20)
+                    text("GAME OVER!", width/5, height/2)
+                    noLoop();
+                }//if the ball did not bounce off from the paddle, game over!
+            }
+        }
+        function keyPressed(){
+            if (key=="P"||key=="P"){
+                     ballSpeedX = 0
+                     ballSpeedY = 0
+         }//press p to pause
+         
+         else if (mousePressed){
+           //press mouse to resume
+         }
+        }
+        function drawBall() {
+            noStroke();
+            ellipse(ballX, ballY, 20, 20);//size of the ball
+        }//drawing the ball
+
+        function drawPaddle() {
+            strokeWeight(4);
+            rect(mouseX, height - paddleHeight - 4, paddleWidth, paddleHeight);//size of paddle
+            
+        }//drawing the paddle
+        function mousePressed(){
+            if(ballSpeedX == 0){
+            ballSpeedX = 5
+            ballSpeedY = 5
+                
+            }//starting the game by pressing mouse
+       }
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/xiam2359/p5js/blob/master/pong-remix.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
