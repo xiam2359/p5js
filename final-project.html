@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+      var boxes = []; //array for the boxes/rectangles
+      var bombs = [];
+      var bombX; //x coordinate of the ball/bomb
+      var bombY; //y coordinate for the ball/bomb 
+      var dirY; //tracks the direction of the bomb when the player shoots it
+      var lives; //tracks the number of lives
+      
+      function setup() {
+        createCanvas(600,600);
+        
+        bombX = width/2; //the x coordinate of the bomb set to half of the width
+        bombY = height-100; //the y coordinate of the bomb set to height-100
+        dirY = 0; //direction is set to 0 for the bomb to stay in place
+        lives = 5;//the player has only 5 lives to work with to find the mystery box
+        
+        //draws 12 boxes on the screen by adding new boxes to the array
+        for(var i = 0; i <= 12; i++){
+           boxes.push(new Box(i*50,30,i*50));
+        }
+      }
+      
+      function draw() {
+       background(0,150,255);//screen color of the game set to blue
+      
+          fill(0); //the color of the bomb = black
+          ellipse(bombX, bombY, 35,35);//where the bomb start shooting from
+          bombY = bombY - dirY;//setting the bomb moving straight up
+          
+       if (mouseIsPressed == true) {
+           dirY = 6;
+         }//moving the ball straight up by 6
+         
+         if(bombY > 0 && bombY < 10){
+           bombY = height - 100;
+           lives--;//setting the # of lives decreasing by 1 everytime a ball is shooted
+           dirY = 0;//making the ball go back to the canyon in order for it to re-shoot 
+         }
+         
+       //The coodinates of the cannon drawing it as a circle with a triangle at the bottom and a rectangle on top 
+       fill(250,250,75); //set the canyon color to yellow 
+       triangle(width/2, height-70, width/2-40, height, width/2+40, height);
+       rectMode(CENTER);
+       rect(width/2, height-80, 35, 60);
+       ellipse(width/2, height-40, 70, 70);
+       fill(0);
+       textSize(40)
+       text("M", width/2-18, height-25);
+       
+       text("Lives = " + lives, 60,90);//drawing the lives 
+       
+       for(var i = 0; i <= 10; i++){
+          boxes[i].display();//drawing the boxes
+          boxes[i].move();//moving the boxes continously
+        }
+       
+        fill(random(255), random(255), random(255));
+        textSize(20);
+        text("Find the mystery box", 60, height-10);
+        text("to win the prize!", 350, height-10);
+        /*drawing the text saying"find the mystery box to win the prize"*/
+        
+        if(lives == 0) {
+          fill(255,0,0); //red text color
+          textSize(70);
+          text("Game Over!", 100, 300);//text saying game over when 0 lives left
+          noLoop();//end the game when there's 0 lives left
+        }  
+        
+        if(mouseIsPressed == true) { //when mouse is pressed, ...
+            if(mouseX >= width-120 && mouseX <= width && mouseY >= 10 && mouseY <= 100) {//the cordinates for the mystery box
+                dirY = 0;//stops the bomb when the mystery box are being pressed
+                fill(255,0,0); //red text color
+                textSize(25);
+                text("Congrats! You found the mystery box!", 80, 200);
+                text("You win nothing:)", 190, 250);
+                noLoop();//ends the game once the mystery box is pressed/found
+            }
+        }
+      }
+     
+      function Box(x,y,y1) {
+    /*coordinates of the boxes and the direct it goes*/
+        this.x = x;
+        this.y = y;
+        this.x1 = 30;
+        this.y1 = y1;
+        this.x2 = width - 30;
+        
+        this.display = function(){
+          noStroke(); //sets no borders to the boxes
+          fill(255); // sets the boxes color to white
+          //drawing boxes as rectangles
+          rect(this.x, this.y, 30, 40);
+          rect(this.x1, this.y1, 40, 30);
+          rect(this.x2, this.y1, 40, 30);
+          
+        }
+        /*moving the boxes*/
+        this.move = function(){
+            this.x += 2;//box moving horizontally to right
+            this.y1 += 2;//box moving vertically down
+          if(this.x == width) {
+            this.x = 10;//retarts the movement of the boxes by resetting the value of this.x to 10
+          }
+          if(this.y1 == height) {
+              this.y1 = 30;//retarts the movement of the boxes by resetting the value of this.y1 to 30
+          }
+        }
+      }
+      
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/xiam2359/p5js/blob/master/final-project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+</html>
