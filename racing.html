@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        var x,y; //x & y coordinates for the blue ball
+        var a,b; //X & y coordinates for the red ball
+        
+        function setup() {
+            createCanvas(600,600);
+            x = 150; //x-value of blue ball set to 150
+            y = 50; //y-value of blue ball set to 50
+            a = 450; //x-value of red ball set to 450
+            b = 50; //y-value of red ball set to 50
+            
+        }
+
+        function draw() {
+        background(0,220,0); //green background
+        
+        strokeWeight(4); //thickness of shapes set to 4
+        
+        line(width/2,55,width/2,550); //draw line in the middle of the screen vertically
+        line(0,550,width,550); //draw line at the end of the screen herizontly
+        
+        fill("red"); //red color
+        ellipse(a,b,50,50); //draw the red circle(player1)
+        fill("blue"); //blue color
+        ellipse(x,y,50,50);//draw blue circle(player2)
+        
+        /*text*/
+        fill(0); //black color
+        textSize(50);
+        text("START", 220, 50);
+        text("END", 250, 590);
+        
+        if(y > 550){ 
+            fill("blue");
+            textSize(45);
+            text("Congrats!! Blue Wins!!",80, 300);
+            noLoop();
+            //If blue circle went beneath y=550, then blue will win and game ends  
+          }
+          if(b > 550){ 
+            fill("red");
+            textSize(45);
+            text("Congrats!! Red Wins!!", 80, 300);
+            noLoop();
+            //If red circle went beneath y=550, then red will win and game ends
+          }
+        }
+        function keyPressed(){
+          if(keyCode==DOWN_ARROW){
+              b = b + 10;
+          }//press the key down arrow for the red ball to move down the canvas.
+          if(key == "d" || key == "D"){
+            y = y + 10;  
+          }//press the key "d" for the blue ball to move down the canvas.
+        }
+        
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/xiam2359/p5js/blob/master/racing.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+
+</html>
